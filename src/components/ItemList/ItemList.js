@@ -3,8 +3,8 @@ import Item from '../Item/Item';
 
 const ItemList = ({items}) => (
 	<ul>
-		{items.map(item=>
-			<li key={item.value}>
+		{items.map((item, i)=>
+			<li key={i}>
 				<Item value={item.value}/>
 			</li>)
 		}	
