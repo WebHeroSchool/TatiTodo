@@ -1,7 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap');
+
 .wrap{
 	margin: auto;
 	width:300px;
+	font-family: 'Lora', serif;
+	font-weight: 400;
 }
-.title{
-	font-family: cursive;
+.title{	
+	font-weight: 600;
 }

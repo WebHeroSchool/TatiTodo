@@ -5,7 +5,7 @@ const ItemList = ({items}) => (
 	<ul>
 		{items.map((item, i)=>
 			<li key={i}>
-				<Item value={item.value}/>
+				<Item value={item.value} isDone={item.isDone}/>
 			</li>)
 		}	
 	</ul>);
