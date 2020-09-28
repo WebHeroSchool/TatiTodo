@@ -2,18 +2,27 @@ import React from 'react';
 import ItemList from '../ItemList/ItemList';
 import InputItem from '../InputItem/InputItem';
 import Footer from '../Footer/Footer';
-import './App.css'
+import styles from './App.module.css'
 
 const App = () => {
 	const items = [
-		{value: "Выполнить следующее задание по React"},
-		{value: "Составить карту поиска работы"},
-		{value: "Почитать книгу"}
+		{
+			value: "Выполнить следующее задание по React",
+			isDone: true
+		},
+		{
+			value: "Составить карту поиска работы",
+			isDone: false
+		},
+		{
+			value: "Почитать книгу",
+			isDone: true
+		}
 	];
 
 	return(
-		<div className="wrap">
-			<h1 className="wrap__title">Заголовок</h1>
+		<div className={styles.wrap}>
+			<h1 className={styles.title}>Заголовок</h1>
 			<InputItem />
 			<ItemList items={items}/>
 			<Footer count={6} />
