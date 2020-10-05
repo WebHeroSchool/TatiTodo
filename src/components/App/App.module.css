@@ -2,9 +2,13 @@
 
 .wrap{
 	margin: auto;
-	width:300px;
+	width:40%;
 	font-family: 'Lora', serif;
 	font-weight: 400;
+	background: #ececec;
+	padding: 2%;
+	border-radius: 3%;
+	box-shadow: 0 0 10px #968f8f;
 }
 .title{	
 	font-weight: 600;

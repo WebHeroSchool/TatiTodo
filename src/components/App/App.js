@@ -7,22 +7,26 @@ import styles from './App.module.css'
 const App = () => {
 	const items = [
 		{
-			value: "Выполнить следующее задание по React",
+			value: "Take the next React lesson",
 			isDone: true
 		},
 		{
-			value: "Составить карту поиска работы",
+			value: "Pick up a parcel from the mail",
 			isDone: false
 		},
 		{
-			value: "Почитать книгу",
+			value: "Сook dinner",
 			isDone: true
-		}
+		},
+		{
+			value: "Read the book",
+			isDone: true
+		}		
 	];
 
 	return(
 		<div className={styles.wrap}>
-			<h1 className={styles.title}>Список дел</h1>
+			<h1 className={styles.title}>To do List</h1>
 			<InputItem />
 			<ItemList items={items}/>
 			<Footer count={6} />
