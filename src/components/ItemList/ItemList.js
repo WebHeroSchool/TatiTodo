@@ -2,13 +2,14 @@ import React from 'react';
 import Item from '../Item/Item';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import ListItemIcon from '@material-ui/core/ListItemIcon';
+// import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+// import ListItemText from '@material-ui/core/ListItemText';
+// import Checkbox from '@material-ui/core/Checkbox';
+// import IconButton from '@material-ui/core/IconButton';
+// import DeleteIcon from '@material-ui/icons/Delete';
 
+//то, как было раньше и работало:
 // const ItemList = ({items}) => (
 // 	<ul>
 // 		{items.map((item, i)=>
@@ -44,7 +45,8 @@ export default function ItemList({items}) {
 
 	        return (
 	          <ListItem key={i} role={undefined} dense button onClick={handleToggle(item.value)}>
-	            <ListItemIcon>
+	            <Item value={item.value} isDone={item.isDone}/> //есдт убрать эту строку и открыть комментарии ниже, то тоже будет работать
+	           /* <ListItemIcon>
 	              <Checkbox
 	                edge="start"
 	                checked={checked.indexOf(item.value) !== -1}
@@ -58,7 +60,7 @@ export default function ItemList({items}) {
 	              <IconButton edge="end" aria-label="comments">
 	                <DeleteIcon />
 	              </IconButton>
-	            </ListItemSecondaryAction>            
+	            </ListItemSecondaryAction> */           
 	          </ListItem>
 	        );
       	})}

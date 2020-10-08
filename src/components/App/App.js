@@ -12,15 +12,15 @@ const App = () => {
 		},
 		{
 			value: "Pick up a parcel from the mail",
-			isDone: false
+			isDone: true
 		},
 		{
 			value: "Сook dinner",
-			isDone: true
+			isDone: false
 		},
 		{
 			value: "Read the book",
-			isDone: true
+			isDone: false
 		}		
 	];
 
