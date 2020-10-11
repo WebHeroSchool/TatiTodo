@@ -1,7 +1,12 @@
-.Item{
+.item{
 	color:#333;
+	display: inline-block;
 }
 .done{
 	/*color:#c4c4c4;*/
 	text-decoration: line-through;
+	display: inline-block;	
+}
+.inline{
+	display: inline-block;
 }
