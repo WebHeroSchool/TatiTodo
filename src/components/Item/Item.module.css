@@ -1,12 +1,12 @@
 .item{
-	color:#333;
-	display: inline-block;
+	color:#333;		
 }
 .done{
 	/*color:#c4c4c4;*/
-	text-decoration: line-through;
-	display: inline-block;	
+	text-decoration: line-through;		
 }
-.inline{
-	display: inline-block;
+
+.item, .done{
+	display: flex;
+	align-items: center;
 }
