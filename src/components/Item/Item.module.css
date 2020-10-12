@@ -1,7 +1,12 @@
-.Item{
-	color:#333;
+.item{
+	color:#333;		
 }
 .done{
 	/*color:#c4c4c4;*/
-	text-decoration: line-through;
+	text-decoration: line-through;		
+}
+
+.item, .done{
+	display: flex;
+	align-items: center;
 }

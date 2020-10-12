@@ -2,10 +2,13 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
 const InputItem = ()=> (<div>	
-		<TextField
-          id="outlined-basic"
-          label="Добавить задание"           
-          variant="outlined"     
+        <TextField
+          id="outlined-full-width"       
+          placeholder="Аdd a new task"          
+	      fullWidth
+          variant="outlined"
+          color="secondary"
+          bordercolor="#de2242"
         />
 	</div>);
 
