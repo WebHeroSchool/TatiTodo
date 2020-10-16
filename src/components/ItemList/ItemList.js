@@ -3,7 +3,7 @@ import Item from '../Item/Item';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
-export default function ItemList({items}) { 
+export default function ItemList({items, onClickDone}) { 
   const [checked, setChecked] = React.useState([0]);
 
   const handleToggle = (value: number) => () => {
@@ -26,7 +26,7 @@ export default function ItemList({items}) {
 
 	        return (
 	          <ListItem key={i} role={undefined} dense button onClick={handleToggle(item.value)}>	            
-	          	<Item value={item.value} isDone={item.isDone}/>         
+	          	<Item value={item.value} isDone={item.isDone} onClickDone={onClickDone}/>         
 	          </ListItem>
 	        );
       	})}
