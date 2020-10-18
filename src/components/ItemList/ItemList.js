@@ -3,33 +3,16 @@ import Item from '../Item/Item';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
-export default function ItemList({items, onClickDone}) { 
-  const [checked, setChecked] = React.useState([0]);
-
-  const handleToggle = (value: number) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
-  };
-
-  return (
+const ItemList = ({items, onClickDone}) => (
     <List>
-    	{items.map((item, i) => {
-	        const labelId = `checkbox-list-label-${item.value}`;
+    	{items.map(item =>  	       
+	    	<ListItem key={item.value} role={undefined}>	            
+	          	<Item value={item.value} 
+	          		  isDone={item.isDone} 
+	          		  id={item.id}
+	          		  onClickDone={onClickDone}/>         
+	        </ListItem>)
+	    }
+    </List>);     
 
-	        return (
-	          <ListItem key={i} role={undefined} dense button onClick={handleToggle(item.value)}>	            
-	          	<Item value={item.value} isDone={item.isDone} onClickDone={onClickDone}/>         
-	          </ListItem>
-	        );
-      	})}
-    </List>
-  );     
-}
+export default ItemList;
