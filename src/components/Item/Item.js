@@ -8,22 +8,21 @@ import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const Item = ({value, isDone, onClickDone}) => 
+const Item = ({value, isDone, id, onClickDone}) => 
 	(<span className={
 		classnames({ [styles.item]:true,
 					 [styles.done]:isDone})
 	  }>
 	  	<ListItemIcon >
-			<Checkbox 
-				edge="start"
+			<Checkbox 				
 			    checked={isDone}
 			    tabIndex={-1}			    
-			    onClick = {() => onClickDone(isDone)}			                
+			    onClick = {() => onClickDone(id)}			                
             />
         </ListItemIcon>
-        <ListItemText primary={`${value}`}/>
+        <ListItemText primary={value}/>
 	    <ListItemSecondaryAction>
-	        <IconButton edge="end" aria-label="comments">
+	        <IconButton aria-label="comments">
 			    <DeleteIcon />
 			</IconButton>
 		</ListItemSecondaryAction>
