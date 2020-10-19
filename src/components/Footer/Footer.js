@@ -11,7 +11,7 @@ const StyledButton = withStyles({
   },
 })(Button);
 
-const Footer = ({count})=> (
+const Footer = ({count, onClickClearCompleted})=> (
 	<div className={styles.wrap}>
 		<span className={styles.wrap}>{count} items left</span>
 		<ButtonGroup aria-label="small outlined button group" size="small">
@@ -19,7 +19,9 @@ const Footer = ({count})=> (
 		    <StyledButton>Active</StyledButton>
 		    <StyledButton>Completed</StyledButton>
       	</ButtonGroup>			
-		<StyledButton variant="outlined" size="small">clear completed</StyledButton>
+		<StyledButton variant="outlined" size="small" onClick={onClickClearCompleted} >
+			clear completed
+		</StyledButton>
 	</div>
 	);
 

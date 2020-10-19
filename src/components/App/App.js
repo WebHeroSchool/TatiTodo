@@ -44,13 +44,40 @@ class App extends React.Component{
 		this.setState({items: newItemList});
 	}
 
+	onClickDelete = id =>{
+		let newItemList = [...this.state.items];
+
+		let index = newItemList.map(item => item.id).indexOf(id);
+		if (index !== -1){
+			newItemList.splice(index, 1);
+			this.setState({items: newItemList});
+		}
+	}
+
+	onClickClearCompleted = () =>{ 	
+		let newItemList = [...this.state.items];
+
+		let id; 
+		const arrayOfIds = newItemList.filter(item => item.isDone === true).map(item => item.id);
+		for (id of arrayOfIds){			
+			let index = newItemList.map(item => item.id).indexOf(id);
+			if (index !== -1){
+				newItemList.splice(index, 1);				
+			}	
+		}	
+		this.setState({items: newItemList});	
+	}
+
 	render(){
 		return(
 			<div className={styles.wrap}>
 				<h1 className={styles.title}>To do List</h1>
 				<InputItem />
-				<ItemList items={this.state.items} onClickDone={this.onClickDone}/>
-				<Footer count={6} />
+				<ItemList items={this.state.items} 
+						  onClickDone={this.onClickDone}
+						  onClickDelete={this.onClickDelete}/>
+				<Footer count={6} 
+						onClickClearCompleted={this.onClickClearCompleted} />
 			</div>);
 	}
 }
