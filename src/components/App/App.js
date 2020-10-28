@@ -27,8 +27,22 @@ class App extends React.Component{
 				isDone: false,
 				id: 4
 			}		
-		]
+		],
+		count: 4
 	}
+
+	onClickAdd = value => this.setState( state => ({
+		items: [
+			...state.items,
+			{
+				value,
+				isDone: false,
+				id: state.count + 1
+
+			}
+		],
+		count: state.count + 1
+	}));
 
 	onClickDone = id => {
 		const newItemList = this.state.items.map(item => {
@@ -42,9 +56,9 @@ class App extends React.Component{
 		});
 
 		this.setState({items: newItemList});
-	}
+	};
 
-	onClickDelete = id =>{
+	onClickDelete = id => {
 		let newItemList = [...this.state.items];
 
 		let index = newItemList.map(item => item.id).indexOf(id);
@@ -52,9 +66,9 @@ class App extends React.Component{
 			newItemList.splice(index, 1);
 			this.setState({items: newItemList});
 		}
-	}
+	};
 
-	onClickClearCompleted = () =>{ 	
+	onClickClearCompleted = () => { 	
 		let newItemList = [...this.state.items];
 
 		let id; 
@@ -66,13 +80,13 @@ class App extends React.Component{
 			}	
 		}	
 		this.setState({items: newItemList});	
-	}
+	};
 
 	render(){
 		return(
 			<div className={styles.wrap}>
 				<h1 className={styles.title}>To do List</h1>
-				<InputItem />
+				<InputItem onClickAdd={this.onClickAdd}/>
 				<ItemList items={this.state.items} 
 						  onClickDone={this.onClickDone}
 						  onClickDelete={this.onClickDelete}/>
