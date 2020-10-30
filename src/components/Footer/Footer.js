@@ -23,6 +23,6 @@ const Footer = ({count, onClickClearCompleted})=> (
 			clear completed
 		</StyledButton>
 	</div>
-	);
+);
 
 export default Footer; 
