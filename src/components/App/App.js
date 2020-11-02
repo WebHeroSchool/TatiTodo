@@ -27,8 +27,22 @@ class App extends React.Component{
 				isDone: false,
 				id: 4
 			}		
-		]
+		],
+		count: 4
 	}
+
+	onClickAdd = value => this.setState( state => ({
+		items: [
+			...state.items,
+			{
+				value,
+				isDone: false,
+				id: state.count + 1
+
+			}
+		],
+		count: state.count + 1
+	}));
 
 	onClickDone = id => {
 		const newItemList = this.state.items.map(item => {
@@ -42,41 +56,44 @@ class App extends React.Component{
 		});
 
 		this.setState({items: newItemList});
-	}
+	};
 
-	onClickDelete = id =>{
+	onClickDelete = id => {
 		let newItemList = [...this.state.items];
+		let newCount = this.state.count;
 
 		let index = newItemList.map(item => item.id).indexOf(id);
 		if (index !== -1){
 			newItemList.splice(index, 1);
-			this.setState({items: newItemList});
+			this.setState({items: newItemList, count: newCount - 1});
 		}
-	}
+	};
 
-	onClickClearCompleted = () =>{ 	
+	onClickClearCompleted = () => { 	
 		let newItemList = [...this.state.items];
+		let newCount = this.state.count;
 
 		let id; 
 		const arrayOfIds = newItemList.filter(item => item.isDone === true).map(item => item.id);
 		for (id of arrayOfIds){			
 			let index = newItemList.map(item => item.id).indexOf(id);
 			if (index !== -1){
-				newItemList.splice(index, 1);				
+				newItemList.splice(index, 1);	
+				newCount --;			
 			}	
 		}	
-		this.setState({items: newItemList});	
-	}
+		this.setState({items: newItemList, count: newCount});	
+	};
 
 	render(){
 		return(
 			<div className={styles.wrap}>
 				<h1 className={styles.title}>To do List</h1>
-				<InputItem />
+				<InputItem onClickAdd={this.onClickAdd}/>
 				<ItemList items={this.state.items} 
 						  onClickDone={this.onClickDone}
 						  onClickDelete={this.onClickDelete}/>
-				<Footer count={6} 
+				<Footer count={this.state.count} 
 						onClickClearCompleted={this.onClickClearCompleted} />
 			</div>);
 	}
