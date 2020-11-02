@@ -60,26 +60,29 @@ class App extends React.Component{
 
 	onClickDelete = id => {
 		let newItemList = [...this.state.items];
+		let newCount = this.state.count;
 
 		let index = newItemList.map(item => item.id).indexOf(id);
 		if (index !== -1){
 			newItemList.splice(index, 1);
-			this.setState({items: newItemList});
+			this.setState({items: newItemList, count: newCount - 1});
 		}
 	};
 
 	onClickClearCompleted = () => { 	
 		let newItemList = [...this.state.items];
+		let newCount = this.state.count;
 
 		let id; 
 		const arrayOfIds = newItemList.filter(item => item.isDone === true).map(item => item.id);
 		for (id of arrayOfIds){			
 			let index = newItemList.map(item => item.id).indexOf(id);
 			if (index !== -1){
-				newItemList.splice(index, 1);				
+				newItemList.splice(index, 1);	
+				newCount --;			
 			}	
 		}	
-		this.setState({items: newItemList});	
+		this.setState({items: newItemList, count: newCount});	
 	};
 
 	render(){
@@ -90,7 +93,7 @@ class App extends React.Component{
 				<ItemList items={this.state.items} 
 						  onClickDone={this.onClickDone}
 						  onClickDelete={this.onClickDelete}/>
-				<Footer count={6} 
+				<Footer count={this.state.count} 
 						onClickClearCompleted={this.onClickClearCompleted} />
 			</div>);
 	}

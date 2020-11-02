@@ -12,18 +12,14 @@ const StyledButton = withStyles({
 
 class InputItem extends React.Component{
 	state = {
-		inputValue: ' ',
+		inputValue: '',
 		btnIsClicked: false
 	};
 
-	onButtonClick = () => {			
-// console.log(btnIsClicked);
-		if(this.state.inputValue != ' '){			
-			// this.setState({ inputValue : ' ', btnIsClicked: true });
-
+	onButtonClick = () => {	
+		if(this.state.inputValue != ''){
 			this.props.onClickAdd(this.state.inputValue);
-
-			this.setState({ inputValue : ' ', btnIsClicked: false });
+			this.setState({ inputValue : '', btnIsClicked: false });
 		}else{
 			 this.setState({ btnIsClicked: true });
 		}
@@ -38,13 +34,12 @@ class InputItem extends React.Component{
 		          placeholder="Аdd a new task"          
 			      fullWidth			     
 		          variant="outlined"
-		          color="secondary"
-		          bordercolor="#de2242"
+		          color="secondary"		                   		       
 
 		          value={this.state.inputValue}
 		          onChange={event => this.setState({ inputValue: event.target.value })}
-		          error={this.state.inputValue === ' ' && this.state.btnIsClicked}
-		          helperText={this.state.inputValue === ' ' && this.state.btnIsClicked ? 'This field cannot be empty!' : ' '}
+		          error={this.state.inputValue === '' && this.state.btnIsClicked}
+		          helperText={this.state.inputValue === '' && this.state.btnIsClicked ? 'This field cannot be empty!' : ' '}
 	        />
 	        <StyledButton id="btnSave"
 	        			  className={styles.btn} 
@@ -58,3 +53,4 @@ class InputItem extends React.Component{
 }
 
 export default InputItem;
+

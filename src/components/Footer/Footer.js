@@ -7,7 +7,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 const StyledButton = withStyles({  
   label: {
     textTransform: 'capitalize',
-        color: '#565555',
+    color: '#565555',
   },
 })(Button);
 
@@ -24,5 +24,9 @@ const Footer = ({count, onClickClearCompleted})=> (
 		</StyledButton>
 	</div>
 );
+
+Footer.defaultProps = {
+	count: 0
+}
 
 export default Footer; 

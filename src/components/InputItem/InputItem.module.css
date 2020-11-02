@@ -7,3 +7,10 @@
 .btn{
 	width: 25%;
 }
+
+.filled{	
+	border: 1px solid blue;
+    border-radius: 4px;		
+}
+
+/*.MuiInputBase-input*/
