@@ -7,6 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import PropTypes from 'prop-types';
 
 const Item = ({value, isDone, id, onClickDone, onClickDelete}) => 
 	(<span className={
@@ -28,6 +29,14 @@ const Item = ({value, isDone, id, onClickDone, onClickDelete}) =>
 		</ListItemSecondaryAction>
 		
 	 </span>);
+
+Item.propTypes = {
+	value: PropTypes.string.isRequired,
+	isDone: PropTypes.bool.isRequired,
+	id: PropTypes.number.isRequired,
+	onClickDone: PropTypes.func.isRequired,
+	onClickDelete: PropTypes.func.isRequired,
+}
 
 export default Item;
 

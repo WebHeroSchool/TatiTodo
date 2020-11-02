@@ -3,6 +3,7 @@ import styles from './Footer.module.css';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import PropTypes from 'prop-types';
 
 const StyledButton = withStyles({  
   label: {
@@ -25,8 +26,9 @@ const Footer = ({count, onClickClearCompleted})=> (
 	</div>
 );
 
-Footer.defaultProps = {
-	count: 0
-}
+Footer.propTypes = {
+	count: PropTypes.number.isRequired,
+	onClickClearCompleted: PropTypes.func.isRequired
+};
 
 export default Footer; 
