@@ -2,10 +2,11 @@ import React from 'react';
 import ItemList from '../ItemList/ItemList';
 import InputItem from '../InputItem/InputItem';
 import Footer from '../Footer/Footer';
-import styles from './App.module.css'
+import styles from './App.module.css';
+import {useState, useEffect} from 'react';
 
-class App extends React.Component{
-	state = {
+const App = () => {
+	const initialState = {
 		items: [
 			{
 				value: "Take the next React lesson",
@@ -31,21 +32,33 @@ class App extends React.Component{
 		count: 4
 	}
 
-	onClickAdd = value => this.setState( state => ({
-		items: [
-			...state.items,
+	const [items, setItems] = useState(initialState.items);
+	const [count, setCount] = useState(initialState.count);
+
+	useEffect( () => {
+		console.log('mount');
+	}, []);
+
+	useEffect( () => {
+		console.log('update');
+	});
+
+	const onClickAdd = value => {
+		const newItem = [
+			...items,
 			{
 				value,
 				isDone: false,
-				id: state.count + 1
+				id: count + 1
 
 			}
-		],
-		count: state.count + 1
-	}));
+		];
+		setItems(newItem);
+		setCount(count + 1);
+	};
 
-	onClickDone = id => {
-		const newItemList = this.state.items.map(item => {
+	const onClickDone = id => {
+		const newItemList = items.map(item => {
 			const newItem = {...item};
 
 			if(item.id === id){
@@ -54,24 +67,25 @@ class App extends React.Component{
 
 			return newItem;
 		});
-
-		this.setState({items: newItemList});
+		
+		setItems(newItemList);
 	};
 
-	onClickDelete = id => {
-		let newItemList = [...this.state.items];
-		let newCount = this.state.count;
+	const onClickDelete = id => {
+		let newItemList = [...items];
+		let newCount = count;
 
 		let index = newItemList.map(item => item.id).indexOf(id);
 		if (index !== -1){
-			newItemList.splice(index, 1);
-			this.setState({items: newItemList, count: newCount - 1});
+			newItemList.splice(index, 1);			
+			setItems(newItemList);
+			setCount(newCount - 1);
 		}
 	};
 
-	onClickClearCompleted = () => { 	
-		let newItemList = [...this.state.items];
-		let newCount = this.state.count;
+	const onClickClearCompleted = () => { 	
+		let newItemList = [...items];
+		let newCount = count;
 
 		let id; 
 		const arrayOfIds = newItemList.filter(item => item.isDone === true).map(item => item.id);
@@ -81,22 +95,22 @@ class App extends React.Component{
 				newItemList.splice(index, 1);	
 				newCount --;			
 			}	
-		}	
-		this.setState({items: newItemList, count: newCount});	
+		}				
+		setItems(newItemList);
+		setCount(newCount);
 	};
 
-	render(){
-		return(
-			<div className={styles.wrap}>
-				<h1 className={styles.title}>To do List</h1>
-				<InputItem onClickAdd={this.onClickAdd}/>
-				<ItemList items={this.state.items} 
-						  onClickDone={this.onClickDone}
-						  onClickDelete={this.onClickDelete}/>
-				<Footer count={this.state.count} 
-						onClickClearCompleted={this.onClickClearCompleted} />
-			</div>);
-	}
+	return(
+		<div className={styles.wrap}>
+			<h1 className={styles.title}>To do List</h1>
+			<InputItem onClickAdd={onClickAdd}/>
+			<ItemList items={items} 
+					  onClickDone={onClickDone}
+					  onClickDelete={onClickDelete}/>
+			<Footer count={count} 
+					onClickClearCompleted={onClickClearCompleted} />
+		</div>
+	);	
 }
 
 export default App;
