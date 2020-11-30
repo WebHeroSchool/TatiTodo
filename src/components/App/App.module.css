@@ -24,3 +24,7 @@
 .link:active {
     color: red;
 } 
+
+.title{	
+	font-weight: 600;
+}
