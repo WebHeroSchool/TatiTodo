@@ -8,7 +8,7 @@
 	background: #ececec;
 	padding: 2%;
 	border-radius: 3%;
-	box-shadow: 0 0 10px #968f8f;
+	box-shadow: 0 0 10px #968f8f;	
 }
 
 .linksList{
@@ -25,6 +25,3 @@
     color: red;
 } 
 
-.title{	
-	font-weight: 600;
-}

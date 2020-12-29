@@ -4,15 +4,46 @@ import { MenuList, MenuItem } from '@material-ui/core';
 import Todo from '../Todo/Todo';
 import About from '../About/About';
 import styles from './App.module.css';
+
 import classnames from 'classnames';
+
+// import {useState, useEffect} from 'react';
+
+const item = {
+	fontSize:'18pt',
+	fontFamily: 'Lora',
+};
+
+// const appState = {
+// 	isSelected: false
+// }
+
+// const [isSelected, setSelected] = useState(appState.isSelected);
+
+// const onClickSelect = ()=>{
+// 	const newSelected = !isSelected;
+// 	setSelected(newSelected);
+// }
 
 const App = () => (	
 	<Router>
 		<div className={styles.wrap}>
-			<div>
+			<div>			
 				<MenuList className={styles.linksList}>
-					<Link to='/' className={styles.link}><MenuItem>About</MenuItem></Link>
-					<Link to='/todo' className={styles.link}><MenuItem>To do List</MenuItem></Link>					
+					<Link to='/' 
+						className={styles.link} 
+						// isSelected={isSelected}
+						// onClickSelect={onClickSelect}
+						>
+									<MenuItem style={item}>About</MenuItem>
+					</Link>
+					<Link to='/todo' 
+						className={styles.link} 
+						// isSelected={isSelected}
+						// onClickSelect={onClickSelect}
+						>
+									<MenuItem style={item}>To do List</MenuItem>
+					</Link>					
 				</MenuList>
 			</div>
 

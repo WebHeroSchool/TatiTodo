@@ -28,12 +28,19 @@ const Todo = () => {
 				isDone: false,
 				id: 4
 			}		
-		],
-		count: 4
+		],		
+		count: 4,
+		filtered:false, //isFiltered
+		filteredItems:[],
+		filteredCount:0
 	}
 
 	const [items, setItems] = useState(initialState.items);
 	const [count, setCount] = useState(initialState.count);
+
+	const [filtered, setFiltered] = useState(initialState.filtered);
+	const [filteredItems, setFilteredItems] = useState(initialState.filteredItems);
+	const [filteredCount, setFilteredCount] = useState(initialState.filteredCount);
 
 	useEffect( () => {
 		console.log('mount');
@@ -83,12 +90,65 @@ const Todo = () => {
 		}
 	};
 
+	const onClickShowAll = () => {
+		let newItemList = [...items];
+		let newCount = count;
+
+		console.log(newItemList, newCount);
+		setItems(newItemList);
+		setCount(newCount);
+	};
+
+	const onClickShowActive = () => {
+		let newItemList = [...items];
+		let newCount = count;
+
+		let id; 
+		const arrayOfIds = newItemList.filter(item => item.isDone === true).map(item => item.id);		
+
+		for (id of arrayOfIds){			
+			let index = newItemList.map(item => item.id).indexOf(id);	
+			if (index !== -1){
+				newItemList.splice(index, 1);	
+				newCount --;			
+			}	
+		}	
+
+		console.log(newItemList, newCount)
+		setFilteredItems(newItemList);
+		setFilteredCount(newCount);	
+	};
+
+	const onClickShowCompleted = () => {
+		let newItemList = [...items];
+		let newCount = count;
+		let newFiltered = filtered;
+		newFiltered = true;
+
+		let id; 
+		const arrayOfIds = newItemList.filter(item => item.isDone !== true).map(item => item.id);		
+
+		for (id of arrayOfIds){			
+			let index = newItemList.map(item => item.id).indexOf(id);	
+			if (index !== -1){
+				newItemList.splice(index, 1);	
+				newCount --;			
+			}	
+		}	
+
+		console.log(newFiltered, newItemList, newCount);
+		setFiltered(newFiltered);
+		setFilteredItems(newItemList);
+		setFilteredCount(newCount);		
+	};
+
 	const onClickClearCompleted = () => { 	
 		let newItemList = [...items];
 		let newCount = count;
 
 		let id; 
 		const arrayOfIds = newItemList.filter(item => item.isDone === true).map(item => item.id);
+
 		for (id of arrayOfIds){			
 			let index = newItemList.map(item => item.id).indexOf(id);
 			if (index !== -1){
@@ -101,15 +161,33 @@ const Todo = () => {
 	};
 
 	return(
-		<div >
-			<h1 className={styles.title}>To do List</h1>
-			<InputItem onClickAdd={onClickAdd}/>
-			<ItemList items={items} 
-					  onClickDone={onClickDone}
-					  onClickDelete={onClickDelete}/>
-			<Footer count={count} 
-					onClickClearCompleted={onClickClearCompleted} />
-		</div>
+		// if(filtered){
+			<div>
+				<h1 className={styles.title}>To do List</h1>
+				<InputItem onClickAdd={onClickAdd}/>
+				<ItemList items={items} 
+						  onClickDone={onClickDone}
+						  onClickDelete={onClickDelete}/>
+				<Footer count={filteredCount} 					
+						onClickShowAll={onClickShowAll}
+						onClickShowActive={onClickShowActive}
+						onClickShowCompleted={onClickShowCompleted}
+						onClickClearCompleted={onClickClearCompleted}/>
+			</div>
+		// }else{
+		// 	<div>
+		// 		<h1 className={styles.title}>To do List</h1>
+		// 		<InputItem onClickAdd={onClickAdd}/>
+		// 		<ItemList items={items} 
+		// 				  onClickDone={onClickDone}
+		// 				  onClickDelete={onClickDelete}/>
+		// 		<Footer count={count} 						
+		// 				onClickShowAll={onClickShowAll}
+		// 				onClickShowActive={onClickShowActive}
+		// 				onClickShowCompleted={onClickShowCompleted}
+		// 				onClickClearCompleted={onClickClearCompleted}/>
+		// 	</div>
+		// }
 	);	
 }
 
