@@ -31,7 +31,7 @@ const Todo = () => {
 		],		
 		count: 4,
 		filtered:false, //isFiltered
-		filteredItems:[],
+		filteredItems:[{}],
 		filteredCount:0
 	}
 
@@ -120,8 +120,13 @@ const Todo = () => {
 	};
 
 	const onClickShowCompleted = () => {
+		// [...filteredItems] = [...items];
+		// filteredCount = count;
+		
 		let newItemList = [...items];
 		let newCount = count;
+		// let newItemList = [...filteredItems];
+		// let newCount = filteredCount;
 		let newFiltered = filtered;
 		newFiltered = true;
 
@@ -137,9 +142,11 @@ const Todo = () => {
 		}	
 
 		console.log(newFiltered, newItemList, newCount);
+
 		setFiltered(newFiltered);
 		setFilteredItems(newItemList);
-		setFilteredCount(newCount);		
+		setFilteredCount(newCount);	
+		console.log('Attention:');console.log([...items], [...filteredItems]);	
 	};
 
 	const onClickClearCompleted = () => { 	
@@ -160,34 +167,20 @@ const Todo = () => {
 		setCount(newCount);
 	};
 
-	return(
-		// if(filtered){
-			<div>
-				<h1 className={styles.title}>To do List</h1>
-				<InputItem onClickAdd={onClickAdd}/>
-				<ItemList items={items} 
-						  onClickDone={onClickDone}
-						  onClickDelete={onClickDelete}/>
-				<Footer count={filteredCount} 					
-						onClickShowAll={onClickShowAll}
-						onClickShowActive={onClickShowActive}
-						onClickShowCompleted={onClickShowCompleted}
-						onClickClearCompleted={onClickClearCompleted}/>
-			</div>
-		// }else{
-		// 	<div>
-		// 		<h1 className={styles.title}>To do List</h1>
-		// 		<InputItem onClickAdd={onClickAdd}/>
-		// 		<ItemList items={items} 
-		// 				  onClickDone={onClickDone}
-		// 				  onClickDelete={onClickDelete}/>
-		// 		<Footer count={count} 						
-		// 				onClickShowAll={onClickShowAll}
-		// 				onClickShowActive={onClickShowActive}
-		// 				onClickShowCompleted={onClickShowCompleted}
-		// 				onClickClearCompleted={onClickClearCompleted}/>
-		// 	</div>
-		// }
+	return(		
+		<div>
+			<h1 className={styles.title}>To do List</h1>
+			<InputItem onClickAdd={onClickAdd}/>
+			<ItemList items={items} 
+					  onClickDone={onClickDone}
+					  onClickDelete={onClickDelete}/>
+			<Footer count={count} 	//if(filtered)   {count={filteredCount} 							
+					onClickShowAll={onClickShowAll}
+					onClickShowActive={onClickShowActive}
+					onClickShowCompleted={onClickShowCompleted}
+					onClickClearCompleted={onClickClearCompleted}/>
+		</div>
+		
 	);	
 }
 
