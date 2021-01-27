@@ -74,16 +74,10 @@ const Todo = () => {
 	};
 
 	const onClickDelete = id => {
-		let newItemList = [...items];		
-
-		let index = newItemList.map(item => item.id).indexOf(id);
-		if (index !== -1){
-			newItemList.splice(index, 1);			
-			setItems(newItemList);
-			setFilteredItems(newItemList);
-			setCount(count - 1);
-		}
-		//setItems(items.filter(item => item.id !==id));
+        let newItemList = items.filter(item => item.id !== id);
+        setItems(newItemList);
+        setFilteredItems(newItemList);
+        setCount(count - 1);
 	};
 
 	const onClickShowAll = () => {
