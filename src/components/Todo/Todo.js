@@ -35,6 +35,10 @@ const Todo = () => {
 	const [count, setCount] = useState(0);
 	const [filteredItems, setFilteredItems] = useState(initialState.items);
 
+	const [isAllSelect,       setAllSelect] = useState(false);
+	const [isActiveSelect,    setActiveSelect] = useState(false);
+	const [isCompletedSelect, setCompletedSelect] = useState(false);
+
 	useEffect( () => {
 		console.log('mount');
 	}, []);
@@ -82,7 +86,11 @@ const Todo = () => {
 
 	const onClickShowAll = () => {
 		let newItemList = [...items];		
-		setFilteredItems(newItemList);		
+		setFilteredItems(newItemList);
+		
+		setAllSelect(true);
+		setActiveSelect(false);
+		setCompletedSelect(false);
 	};
 
 	const onClickShowActive = () => {
@@ -98,7 +106,11 @@ const Todo = () => {
 				setCount(count - 1);			
 			}	
 		}				
-		setFilteredItems(newItemList);		
+		setFilteredItems(newItemList);	
+
+		setAllSelect(false);
+		setActiveSelect(true);
+		setCompletedSelect(false);
 	};
 
 	const onClickShowCompleted = () => {		
@@ -114,7 +126,11 @@ const Todo = () => {
 				setCount(count - 1);			
 			}	
 		}			
-		setFilteredItems(newItemList);			
+		setFilteredItems(newItemList);	
+	
+		setAllSelect(false);
+		setActiveSelect(false);
+		setCompletedSelect(true);	
 	};
 
 	const onClickClearCompleted = () => { 	
@@ -143,9 +159,12 @@ const Todo = () => {
 					  onClickDelete={onClickDelete}/>
 			<Footer count={filteredItems.length} 							
 					onClickShowAll={onClickShowAll}
-					onClickShowActive={onClickShowActive}
+					onClickShowActive={onClickShowActive}					
 					onClickShowCompleted={onClickShowCompleted}
-					onClickClearCompleted={onClickClearCompleted}/>
+					onClickClearCompleted={onClickClearCompleted}
+					isAllSelect={isAllSelect}
+					isActiveSelect={isActiveSelect}
+					isCompletedSelect={isCompletedSelect}/>
 		</div>
 		
 	);	

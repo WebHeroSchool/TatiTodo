@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 const StyledButton = withStyles({  
   label: {
@@ -12,13 +13,23 @@ const StyledButton = withStyles({
   },
 })(Button);
 
-const Footer = ({count, onClickShowAll, onClickShowActive, onClickShowCompleted, onClickClearCompleted})=> (
+const Footer = ({count, onClickShowAll, onClickShowActive, onClickShowCompleted, onClickClearCompleted, 
+				        isAllSelect, isActiveSelect, isCompletedSelect})=> (
 	<div className={styles.wrap}>
 		<span className={styles.wrap}>{count} items left</span>
 		<ButtonGroup aria-label="small outlined button group" size="small">
-			<StyledButton onClick={onClickShowAll}>All</StyledButton>
-		    <StyledButton onClick={onClickShowActive}>Active</StyledButton>
-		    <StyledButton onClick={onClickShowCompleted}>Completed</StyledButton>
+			<StyledButton className={classnames({[styles.filterSelect]:isAllSelect})} 
+						  onClick={onClickShowAll}>
+				All
+			</StyledButton>		    
+		    <StyledButton className={classnames({[styles.filterSelect]:isActiveSelect})} 
+		    			  onClick={onClickShowActive}>
+		    	Active
+		    </StyledButton>
+		    <StyledButton className={classnames({[styles.filterSelect]:isCompletedSelect})} 
+		    	          onClick={onClickShowCompleted}>
+		    	Completed
+		    </StyledButton>
       	</ButtonGroup>			
 		<StyledButton variant="outlined" size="small" onClick={onClickClearCompleted} >
 			clear completed
@@ -31,7 +42,10 @@ Footer.propTypes = {
 	onClickShowAll:PropTypes.func.isRequired,
 	onClickShowActive:PropTypes.func.isRequired,
 	onClickShowCompleted: PropTypes.func.isRequired,
-	onClickClearCompleted: PropTypes.func.isRequired	
+	onClickClearCompleted: PropTypes.func.isRequired,
+	isAllSelect: PropTypes.bool.isRequired,
+	isActiveSelect: PropTypes.bool.isRequired,
+	isCompletedSelect: PropTypes.bool.isRequired
 };
 
 export default Footer; 

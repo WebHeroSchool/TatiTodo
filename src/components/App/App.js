@@ -4,21 +4,29 @@ import { MenuList, MenuItem } from '@material-ui/core';
 import Todo from '../Todo/Todo';
 import About from '../About/About';
 import styles from './App.module.css';
+import classnames from 'classnames';
 
 const item = {
 	fontSize:'18pt',
 	fontFamily: 'Lora',
 };
 
+let isAboutSelect = false;
+let isTodoSelect = false;
+
 const App = () => (	
 	<Router>
 		<div className={styles.wrap}>
 			<div>			
 				<MenuList className={styles.linksList}>
-					<Link to='/' className={styles.link}>
-						<MenuItem style={item}>About</MenuItem>
+					<Link to='/'className={classnames({[styles.link]:true,
+													   [styles.linkSelect]:isAboutSelect})}
+								onClick={()=> {isAboutSelect = true; isTodoSelect = false;}}>
+						<MenuItem  style={item}>About</MenuItem>
 					</Link>
-					<Link to='/todo' className={styles.link}>
+					<Link to='/todo' className={classnames({[styles.link]:true,
+													        [styles.linkSelect]:isTodoSelect})}
+									 onClick={()=> {isAboutSelect=false; isTodoSelect = true;}}>
 						<MenuItem style={item}>To do List</MenuItem>
 					</Link>					
 				</MenuList>
