@@ -16,20 +16,23 @@ const StyledButton = withStyles({
 const Footer = ({count, onClickShowAll, onClickShowActive, onClickShowCompleted, onClickClearCompleted, 
 				        isAllSelect, isActiveSelect, isCompletedSelect})=> (
 	<div className={styles.wrap}>
-		<span className={styles.wrap}>{count} items left</span>
+		<span className={styles.wrap}><span className={styles.count}>{count}</span> items left</span>
 		<ButtonGroup aria-label="small outlined button group" size="small">
-			<StyledButton className={classnames({[styles.filterSelect]:isAllSelect})} 
+			<Button className={classnames({ [styles.filter]:true,
+											[styles.filterSelect]:isAllSelect})} 
 						  onClick={onClickShowAll}>
-				All
-			</StyledButton>		    
-		    <StyledButton className={classnames({[styles.filterSelect]:isActiveSelect})} 
+				All 
+			</Button>		    
+		    <Button className={classnames({ [styles.filter]:true,
+											[styles.filterSelect]:isActiveSelect})} 
 		    			  onClick={onClickShowActive}>
 		    	Active
-		    </StyledButton>
-		    <StyledButton className={classnames({[styles.filterSelect]:isCompletedSelect})} 
+		    </Button>
+		    <Button className={classnames({ [styles.filter]:true,
+											[styles.filterSelect]:isCompletedSelect})} 
 		    	          onClick={onClickShowCompleted}>
 		    	Completed
-		    </StyledButton>
+		    </Button>
       	</ButtonGroup>			
 		<StyledButton variant="outlined" size="small" onClick={onClickClearCompleted} >
 			clear completed

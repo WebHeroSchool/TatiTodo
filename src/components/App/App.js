@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { MenuList, MenuItem } from '@material-ui/core';
 import Todo from '../Todo/Todo';
 import About from '../About/About';
@@ -11,28 +11,24 @@ const item = {
 	fontFamily: 'Lora',
 };
 
-let isAboutSelect = false;
-let isTodoSelect = false;
-
 const App = () => (	
 	<Router>
 		<div className={styles.wrap}>
 			<div>			
 				<MenuList className={styles.linksList}>
-					<Link to='/'className={classnames({[styles.link]:true,
-													   [styles.linkSelect]:isAboutSelect})}
-								onClick={()=> {isAboutSelect = true; isTodoSelect = false;}}>
+					<NavLink to='/about' className={styles.link}
+					 					 activeClassName={styles.linkSelect}>
 						<MenuItem  style={item}>About</MenuItem>
-					</Link>
-					<Link to='/todo' className={classnames({[styles.link]:true,
-													        [styles.linkSelect]:isTodoSelect})}
-									 onClick={()=> {isAboutSelect=false; isTodoSelect = true;}}>
+					</NavLink>
+					<NavLink to='/todo' className={styles.link}
+					 					activeClassName={styles.linkSelect}>
 						<MenuItem style={item}>To do List</MenuItem>
-					</Link>					
+					</NavLink>					
 				</MenuList>
 			</div>
 
 			<Route path='/' exact component={About} />
+			<Route path='/about' component={About} />
 			<Route path='/todo' component={Todo} />				
 		</div>
 	</Router>

@@ -6,6 +6,18 @@
     color: #565555;
 }
 
-.filterSelect{
-	background: #f50057
+.count{
+	color: #f50057;
+	padding-right: 5px;
 }
+
+.filter{
+	text-transform: capitalize !important;
+    color: #565555 !important;
+}
+
+.filterSelect{
+	background: #f50057 !important;
+	color:white !important;
+}
+

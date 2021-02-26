@@ -2,6 +2,13 @@ import React from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import styles from './About.module.css';
 import {Octokit} from '@octokit/rest';
+import message from '../../images/message.png';
+import telegram from '../../images/telegram.png';
+import github  from '../../images/github.png';
+import instagram from '../../images/instagram.png';
+import vk from '../../images/vk.png';
+import star from '../../images/Star.png';
+import union from '../../images/Union.png';
 
 const octokit = new Octokit();
 
@@ -9,14 +16,17 @@ class About extends React.Component {
 	state ={
 		isLoading: true,
 		repoList:[],
-		username: 'TatevikBelokon',
+		username: '6thSence', //'TatevikBelokon',
 		fetchRepoSuccess: false,
         error: '',
+        email:'man.tatevic@yandex.ru',
+        phone:'+7 (963) 097 49 39',
+        vkUrl:'https://vk.com/tatibelokon',
+        instUrl:'https://www.instagram.com/tatevik.belokon/?igshid=15520254752v8',        
 	}
 
 	componentDidMount() {
-		octokit.repos.listForUser({
-			// username: '6thSence'
+		octokit.repos.listForUser({			
 			username: this.state.username,
 		})
 		.then( ({data}) => {
@@ -42,40 +52,59 @@ class About extends React.Component {
         	console.log(userInfo);            
             this.setState({
                 avatarURL: userInfo.data.avatar_url,
-                name: userInfo.data.login,
+                name: userInfo.data.name,
+                bio: userInfo.data.bio,
+                githubUrl: userInfo.data.html_url,
+
             });
         });
 	}
 
 	render(){
-		const {isLoading, repoList, avatarURL, name, fetchRepoSuccess, error} = this.state;
+		const {isLoading, fetchRepoSuccess, error, repoList, 
+			   avatarURL, name, bio, githubUrl,
+			   email, phone, vkUrl, instUrl} = this.state;
 
 		return(
 			<div>
-				<h1>About</h1>
-				<div className={styles.text}>
-					Todo ― бесплатное приложение, способное держать все ваши дела под контролем.<br />
-					Самый простой в использовании список дел и задач. <br />
-					Позволяет: 
-					<ul>
-						<li>создавать и удалять дела в одно касание</li>
-						<li>просматривать сразу все дела, невыполненные или завершенные дела на выбор</li>
-						<li>подсказывает сколько осталось дел для выполнения</li>				
-					</ul>
-				</div>
-				<h2>{isLoading ? <LinearProgress color="secondary" /> : 'User'}</h2>
-				{!isLoading && 
+				{isLoading ? <LinearProgress color="secondary" /> : 				
 					<div>
-						{!fetchRepoSuccess ? 'Ошибка: '+ error : 
+						{!fetchRepoSuccess ? 'Error: '+ error : 
 							<div>
-								<img src={avatarURL} alt={name} width="200"></img>
-								<h3>{name}</h3>
-								<h2>Repositories list:</h2>
-								<ol> 
-								     {repoList.map(repo => (<li key={repo.id}>
-								     							<a href={repo.html_url}>{repo.name}</a>
-								     						</li>))}
-								</ol>
+								<div className={styles.user}>
+									<img src={avatarURL} alt={name} className={styles.userImg}/>
+									<span className={styles.userInfo}>
+										<h1>{name}</h1>
+										<p>{bio}</p>
+										<p className={styles.contact}> 
+											<img src={message} alt='email icon' className={styles.contactIcon}/> 
+											<span>{email}</span>
+										</p>
+										<p className={styles.contact}>
+											<img src={telegram} alt='telegram icon' className={styles.contactIcon}/> 
+											<span>{phone}</span>
+										</p>
+										<p className={styles.socialNetwork}>
+											<a href={githubUrl}><img src={github} alt='github icon' className={styles.socialIcon}/></a> 
+											<a href={vkUrl}><img src={vk} alt='vk icon' className={styles.socialIcon}/></a> 
+											<a href={instUrl}><img src={instagram} alt='instagram icon' className={styles.socialIcon}/></a> 
+										</p>
+									</span>
+								</div>								
+								<ul className={styles.repoList}> 
+								     {repoList.map(repo => (<li key={repo.id} className={styles.repo}>
+								     							<a href={repo.html_url} className={styles.repoName}>{repo.name}</a>
+								     							<p className={styles.repoDop}>
+								     								
+								     								<img src={star} alt='star icon'  className={styles.repoIcon}/>
+								     									<span className={styles.repoSpan}>{repo.stargazers_count}</span>
+								     								<img src={union} alt='union icon' className={styles.repoIcon}/>
+								     									<span className={styles.repoSpan}>{repo.forks_count}</span>
+								     								<span className={styles.repoSpan}>Updated on {repo.updated_at}</span>								     								
+								     							</p>
+								     				        </li>)
+								     )}
+								</ul>
 							</div>
 						}
 					</div>

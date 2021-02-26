@@ -35,7 +35,7 @@ const Todo = () => {
 	const [count, setCount] = useState(0);
 	const [filteredItems, setFilteredItems] = useState(initialState.items);
 
-	const [isAllSelect,       setAllSelect] = useState(false);
+	const [isAllSelect,       setAllSelect] = useState(true);
 	const [isActiveSelect,    setActiveSelect] = useState(false);
 	const [isCompletedSelect, setCompletedSelect] = useState(false);
 
