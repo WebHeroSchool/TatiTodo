@@ -8,12 +8,15 @@
     background: #f5f2f2;
 }
 .userImg{
-	width: 30%;
+	width: 150px;
+    height: 200px;
+    object-fit: cover;
 	border-radius: 15px;
 	margin-right: 5%;
 }
 .userInfo{
- 	width: 70%;
+ 	width: 78%;
+ 	height: 200px;
 }  
 .contact{
 	display: flex;
@@ -25,8 +28,7 @@
 }
 .socialNetwork{
 	display: flex;
-    justify-content: flex-end;
-    margin: 60px 0 0 0;
+    justify-content: flex-end;    
 }
 .socialIcon{
 	width:25px;
@@ -63,4 +65,36 @@
 }
 .repoSpan{
 	margin-right: 15px;
+}
+.repoDotYellow{
+	background-color: #f1e05a;
+    height: 17px;
+    width: 17px;        
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+.repoDotPurple{
+	background-color: purple;
+    height: 17px;
+    width: 17px;        
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+.repoDotRed{
+	background-color: #e34c26;
+    height: 17px;
+    width: 17px;        
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+.repoDotGreen{
+	background-color: green;
+    height: 17px;
+    width: 17px;        
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
 }

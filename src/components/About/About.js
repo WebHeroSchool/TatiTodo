@@ -9,6 +9,7 @@ import instagram from '../../images/instagram.png';
 import vk from '../../images/vk.png';
 import star from '../../images/Star.png';
 import union from '../../images/Union.png';
+import classnames from 'classnames';
 
 const octokit = new Octokit();
 
@@ -16,7 +17,7 @@ class About extends React.Component {
 	state ={
 		isLoading: true,
 		repoList:[],
-		username: '6thSence', //'TatevikBelokon',
+		username: '6thSence',//'TatevikBelokon',
 		fetchRepoSuccess: false,
         error: '',
         email:'man.tatevic@yandex.ru',
@@ -95,12 +96,23 @@ class About extends React.Component {
 								     {repoList.map(repo => (<li key={repo.id} className={styles.repo}>
 								     							<a href={repo.html_url} className={styles.repoName}>{repo.name}</a>
 								     							<p className={styles.repoDop}>
-								     								
+								     								{ repo.language != null ? <span> 
+								     											<span className={classnames({ [styles.repoDotYellow]:repo.language=="JavaScript",
+							             																	  [styles.repoDotPurple]:repo.language=="CSS",
+							             																	  [styles.repoDotRed]:repo.language=="HTML", 
+							             																	  [styles.repoDotGreen]: repo.language!="JavaScript" && repo.language!="CSS" && repo.language!="HTML"
+							             																	  })}></span>								     											
+								     									    	<span className={styles.repoSpan}>{repo.language}</span>
+								     									     </span> 
+								     									: ''								     									
+								     								}
 								     								<img src={star} alt='star icon'  className={styles.repoIcon}/>
 								     									<span className={styles.repoSpan}>{repo.stargazers_count}</span>
 								     								<img src={union} alt='union icon' className={styles.repoIcon}/>
 								     									<span className={styles.repoSpan}>{repo.forks_count}</span>
-								     								<span className={styles.repoSpan}>Updated on {repo.updated_at}</span>								     								
+								     								<span className={styles.repoSpan}>
+								     									Updated on {repo.updated_at.split("T")[0].split("-").reverse().join(".")}
+								     								</span>								     																     								
 								     							</p>
 								     				        </li>)
 								     )}
