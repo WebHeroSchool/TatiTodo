@@ -7,9 +7,8 @@ import telegram from '../../images/telegram.png';
 import github  from '../../images/github.png';
 import instagram from '../../images/instagram.png';
 import vk from '../../images/vk.png';
-import star from '../../images/Star.png';
-import union from '../../images/Union.png';
 import classnames from 'classnames';
+import PaginacionTabla from '../PaginacionTabla/PaginacionTabla';
 
 const octokit = new Octokit();
 
@@ -30,7 +29,7 @@ class About extends React.Component {
 		octokit.repos.listForUser({			
 			username: this.state.username,
 		})
-		.then( ({data}) => {
+		.then( ({data}) => {			
 			console.log(data);
 			this.setState({
 				isLoading: false,
@@ -91,32 +90,15 @@ class About extends React.Component {
 											<a href={instUrl}><img src={instagram} alt='instagram icon' className={styles.socialIcon}/></a> 
 										</p>
 									</span>
-								</div>								
-								<ul className={styles.repoList}> 
-								     {repoList.map(repo => (<li key={repo.id} className={styles.repo}>
-								     							<a href={repo.html_url} className={styles.repoName}>{repo.name}</a>
-								     							<p className={styles.repoDop}>
-								     								{ repo.language != null ? <span> 
-								     											<span className={classnames({ [styles.repoDotYellow]:repo.language=="JavaScript",
-							             																	  [styles.repoDotPurple]:repo.language=="CSS",
-							             																	  [styles.repoDotRed]:repo.language=="HTML", 
-							             																	  [styles.repoDotGreen]: repo.language!="JavaScript" && repo.language!="CSS" && repo.language!="HTML"
-							             																	  })}></span>								     											
-								     									    	<span className={styles.repoSpan}>{repo.language}</span>
-								     									     </span> 
-								     									: ''								     									
-								     								}
-								     								<img src={star} alt='star icon'  className={styles.repoIcon}/>
-								     									<span className={styles.repoSpan}>{repo.stargazers_count}</span>
-								     								<img src={union} alt='union icon' className={styles.repoIcon}/>
-								     									<span className={styles.repoSpan}>{repo.forks_count}</span>
-								     								<span className={styles.repoSpan}>
-								     									Updated on {repo.updated_at.split("T")[0].split("-").reverse().join(".")}
-								     								</span>								     																     								
-								     							</p>
-								     				        </li>)
-								     )}
-								</ul>
+								</div>
+								<table className={styles.repoList}>				  
+								  <PaginacionTabla
+								    itemsperpage={5}//количество элементов на странице
+								    nocolumns={1} //количество столбцов для свойства <td /> colSpan				    
+								    pagesspan={0} //диапазон страниц				    
+								    items={repoList}
+								  />
+								</table>
 							</div>
 						}
 					</div>
