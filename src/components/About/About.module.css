@@ -1,7 +1,7 @@
 .user{
 	display: flex;
 	margin: 40px 0 60px 0;
-	padding: 20px;
+	padding: 20px 20px 0 20px;
 	border: 1px solid black;
     border-color: lightgray;
     border-radius: 15px;
@@ -13,11 +13,10 @@
     object-fit: cover;
 	border-radius: 15px;
 	margin-right: 5%;
-}
+} 
 .userInfo{
- 	width: 78%;
- 	height: 200px;
-}  
+	width: 80%;
+}
 .contact{
 	display: flex;
 	margin: 5px 0 5px 0;

@@ -73,7 +73,7 @@ class About extends React.Component {
 							<div>
 								<div className={styles.user}>
 									<img src={avatarURL} alt={name} className={styles.userImg}/>
-									<span className={styles.userInfo}>
+									<div className={styles.userInfo}>
 										<h1>{name}</h1>
 										<p>{bio}</p>
 										<p className={styles.contact}> 
@@ -89,7 +89,7 @@ class About extends React.Component {
 											<a href={vkUrl}><img src={vk} alt='vk icon' className={styles.socialIcon}/></a> 
 											<a href={instUrl}><img src={instagram} alt='instagram icon' className={styles.socialIcon}/></a> 
 										</p>
-									</span>
+									</div>
 								</div>
 								<table className={styles.repoList}>				  
 								  <PaginacionTabla
