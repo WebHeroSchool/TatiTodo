@@ -13,7 +13,7 @@ class Item extends React.Component{
 	render() {
 		const {value, isDone, id, onClickDone, onClickDelete} = this.props;
 
-		return(
+		return(			
 			<span className={classnames({ [styles.item]:true,
 							              [styles.done]:isDone})}>
 			  	<ListItemIcon >
@@ -23,13 +23,13 @@ class Item extends React.Component{
 					    onClick={() => onClickDone(id)}			                
 		            />
 		        </ListItemIcon>
-		        <ListItemText primary={value}/>
+		        <ListItemText className={styles.itemText} primary={value}/>
 			    <ListItemSecondaryAction>
 			        <IconButton aria-label="comments">
 					    <DeleteIcon onClick={() => onClickDelete(id)}/>
 					</IconButton>
 				</ListItemSecondaryAction>				
-			</span>
+			</span>		
 		)
 	}
 };

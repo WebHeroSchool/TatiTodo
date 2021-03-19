@@ -9,3 +9,22 @@
 	display: flex;
 	align-items: center;
 }
+.itemText{
+	max-width: 89%;
+}
+
+@media(max-width: 768px){
+	.itemText{
+		max-width: 77%;
+	}
+}
+@media (min-width:769px) and (max-width: 900px){
+	.itemText{
+		max-width: 82%;
+	}
+}
+@media (max-width: 1237px){
+	.itemText{
+		max-width: 83%;
+	}
+}
