@@ -16,7 +16,7 @@ class About extends React.Component {
 	state ={
 		isLoading: true,
 		repoList:[],
-		username: '6thSence',//'TatevikBelokon',
+		username: 'TatevikBelokon',//'6thSence'
 		fetchRepoSuccess: false,
         error: '',
         email:'man.tatevic@yandex.ru',
