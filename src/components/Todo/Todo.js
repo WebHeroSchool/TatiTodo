@@ -15,14 +15,14 @@ const Todo = () => {
 			},
 			{
 				value: "Have a rest",
-				isDone: true, 
+				isDone: false, 
 				id: 2
 			}
 		]
 	}
 
 	const [items, setItems] = useState(initialState.items);
-	const [count, setCount] = useState(0);
+	const [count, setCount] = useState(2);
 	const [filteredItems, setFilteredItems] = useState(initialState.items);
 
 	const [isAllSelect,       setAllSelect] = useState(true);
@@ -37,19 +37,26 @@ const Todo = () => {
 		console.log('update');
 	});
 
-	const onClickAdd = value => {
-		const newItemList = [
-			...items,
-			{
-				value,
-				isDone: false,
-				id: count + 1
+	const onClickAdd = data => {		
+		if (items.find(item => item.value === data) == undefined){
+			const newItemList = [
+				...items,
+				{
+					value: data,
+					isDone: false,
+					id: count + 1
+				}
+			];	
 
-			}
-		];
-		setItems(newItemList);
-		setFilteredItems(newItemList)
-		setCount(count + 1);
+			setItems(newItemList);
+			setFilteredItems(newItemList)
+			setCount(count + 1);	
+		}
+		else{			
+			console.log("Элемент сущесвует")
+			document.getElementById('outlined-full-width').value = 'Элемент сущесвует';
+			
+		}
 	};
 
 	const onClickDone = id => {
@@ -107,7 +114,7 @@ const Todo = () => {
 		let newItemList = [...items];	
 
 		let id; 
-		const arrayOfIds = newItemList.filter(item => item.isDone !== true).map(item => item.id);		
+		const arrayOfIds = newItemList.filter(item => item.isDone === false).map(item => item.id);		
 
 		for (id of arrayOfIds){			
 			let index = newItemList.map(item => item.id).indexOf(id);	

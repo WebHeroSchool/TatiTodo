@@ -40,7 +40,7 @@ class InputItem extends React.Component{
 		          value={this.state.inputValue}
 		          onChange={event => this.setState({ inputValue: event.target.value })}
 		          error={this.state.inputValue === '' && this.state.btnIsClicked}
-		          helperText={this.state.inputValue === '' && this.state.btnIsClicked ? 'This field cannot be empty!' : ' '}
+		          helperText={this.state.inputValue === '' && this.state.btnIsClicked ? 'This field cannot be empty!' : ' '}		         
 	        />
 	        <StyledButton id="btnSave"
 	        			  className={styles.btn} 
