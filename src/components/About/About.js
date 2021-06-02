@@ -7,7 +7,6 @@ import telegram from '../../images/telegram.png';
 import github  from '../../images/github.png';
 import instagram from '../../images/instagram.png';
 import vk from '../../images/vk.png';
-import classnames from 'classnames';
 import PaginacionTabla from '../PaginacionTabla/PaginacionTabla';
 
 const octokit = new Octokit();

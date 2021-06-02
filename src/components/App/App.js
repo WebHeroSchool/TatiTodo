@@ -4,7 +4,6 @@ import { MenuList, MenuItem } from '@material-ui/core';
 import Todo from '../Todo/Todo';
 import About from '../About/About';
 import styles from './App.module.css';
-import classnames from 'classnames';
 
 const item = {
 	fontSize:'18pt',

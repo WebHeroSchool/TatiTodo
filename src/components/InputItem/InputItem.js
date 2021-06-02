@@ -14,20 +14,33 @@ const StyledButton = withStyles({
 class InputItem extends React.Component{
 	state = {
 		inputValue: '',
-		btnIsClicked: false
+		btnIsClicked: false,
+		itemIsExist: false
 	};
 
 	onButtonClick = () => {	
 		if(this.state.inputValue !== ''){
-			this.props.onClickAdd(this.state.inputValue);
-			this.setState({ inputValue : '', btnIsClicked: false });
+
+		 // console.log(this.props.items);
+		
+		 console.log( `0 - inputValue: ${this.state.inputValue} btnIsClicked: ${this.state.btnIsClicked} itemIsExist: ${this.state.itemIsExist}`);
+		 	if (this.props.items.find(item => item.value === this.state.inputValue) === undefined){	
+				this.props.onClickAdd(this.state.inputValue);
+				this.setState({ inputValue : '', btnIsClicked: false,  itemIsExist: false});
+				console.log( ` 1 Элемент НЕ существует- inputValue: ${this.state.inputValue} btnIsClicked: ${this.state.btnIsClicked} itemIsExist: ${this.state.itemIsExist}`);
+			}
+			else{			
+				this.setState({ itemIsExist: true });
+				console.log( `2 Элемент сущеcтвует- inputValue: ${this.state.inputValue} btnIsClicked: ${this.state.btnIsClicked} itemIsExist: ${this.state.itemIsExist}`);
+			}
 		}else{
-			 this.setState({ btnIsClicked: true });
+			 this.setState({ btnIsClicked: true});
+			 console.log( `3 - inputValue: ${this.state.inputValue} btnIsClicked: ${this.state.btnIsClicked} itemIsExist: ${this.state.itemIsExist}`);
 		}
 	}
 
 	render(){
-		const {onClickAdd} = this.props;
+		const {onClickAdd, items} = this.props;
 
 		return (<div className={styles.wrap}>	
 	        <TextField
@@ -39,8 +52,16 @@ class InputItem extends React.Component{
 
 		          value={this.state.inputValue}
 		          onChange={event => this.setState({ inputValue: event.target.value })}
-		          error={this.state.inputValue === '' && this.state.btnIsClicked}
-		          helperText={this.state.inputValue === '' && this.state.btnIsClicked ? 'This field cannot be empty!' : ' '}		         
+
+		          // error={this.state.inputValue === '' && this.state.btnIsClicked}
+		          // helperText={this.state.inputValue === '' && this.state.btnIsClicked ? 'This field cannot be empty!' : ' '}
+
+		          error={this.state.itemIsExist && this.state.btnIsClicked}
+		          helperText={this.state.itemIsExist && this.state.btnIsClicked ? 'This task is already exists!' : ' '}	  
+
+		          // error={this.state.inputValue === '' && this.state.btnIsClicked || this.state.inputValue === 'tt'}
+		          // helperText={this.state.inputValue === '' && this.state.btnIsClicked ? 'This field cannot be empty!' : 
+		          // 			              (this.state.inputValue === 'tt' ? 'This task is already exists!' : ' ')}	       
 	        />
 	        <StyledButton id="btnSave"
 	        			  className={styles.btn} 

@@ -38,7 +38,7 @@ const Todo = () => {
 	});
 
 	const onClickAdd = data => {		
-		if (items.find(item => item.value === data) == undefined){
+		if (items.find(item => item.value === data) === undefined){
 			const newItemList = [
 				...items,
 				{
@@ -54,8 +54,8 @@ const Todo = () => {
 		}
 		else{			
 			console.log("Элемент сущесвует")
-			document.getElementById('outlined-full-width').value = 'Элемент сущесвует';
-			
+			//document.getElementById('outlined-full-width').value = 'This task is already exists!';
+
 		}
 	};
 
@@ -150,7 +150,8 @@ const Todo = () => {
 	return(		
 		<div>
 			<h1 className={styles.title}>To do List</h1>
-			<InputItem onClickAdd={onClickAdd}/>
+			<InputItem onClickAdd={onClickAdd}
+					   items={filteredItems}/>
 			<ItemList items={filteredItems} 
 					  onClickDone={onClickDone}
 					  onClickDelete={onClickDelete}/>

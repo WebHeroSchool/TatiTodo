@@ -95,7 +95,7 @@ const PaginacionTabla = ({ itemsperpage, nocolumns, pagesspan, items }) => {
                         <button
                           key={page}
                           {...getSelPageButtonProps({ page: page })}
-                          disabled={currentpage == page}
+                          disabled={currentpage === page}
                         >
                           {page}
                         </button>
