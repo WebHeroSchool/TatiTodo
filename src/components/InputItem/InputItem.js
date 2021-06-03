@@ -19,23 +19,16 @@ class InputItem extends React.Component{
 	};
 
 	onButtonClick = () => {	
-		if(this.state.inputValue !== ''){
-
-		 // console.log(this.props.items);
-		
-		 console.log( `0 - inputValue: ${this.state.inputValue} btnIsClicked: ${this.state.btnIsClicked} itemIsExist: ${this.state.itemIsExist}`);
+		if(this.state.inputValue !== ''){			
 		 	if (this.props.items.find(item => item.value === this.state.inputValue) === undefined){	
 				this.props.onClickAdd(this.state.inputValue);
-				this.setState({ inputValue : '', btnIsClicked: false,  itemIsExist: false});
-				console.log( ` 1 Элемент НЕ существует- inputValue: ${this.state.inputValue} btnIsClicked: ${this.state.btnIsClicked} itemIsExist: ${this.state.itemIsExist}`);
+				this.setState({ inputValue : '', btnIsClicked: false,  itemIsExist: false});				
 			}
 			else{			
-				this.setState({ itemIsExist: true });
-				console.log( `2 Элемент сущеcтвует- inputValue: ${this.state.inputValue} btnIsClicked: ${this.state.btnIsClicked} itemIsExist: ${this.state.itemIsExist}`);
+				this.setState({ itemIsExist: true });				
 			}
 		}else{
-			 this.setState({ btnIsClicked: true});
-			 console.log( `3 - inputValue: ${this.state.inputValue} btnIsClicked: ${this.state.btnIsClicked} itemIsExist: ${this.state.itemIsExist}`);
+			 this.setState({ btnIsClicked: true });
 		}
 	}
 
@@ -53,15 +46,9 @@ class InputItem extends React.Component{
 		          value={this.state.inputValue}
 		          onChange={event => this.setState({ inputValue: event.target.value })}
 
-		          // error={this.state.inputValue === '' && this.state.btnIsClicked}
-		          // helperText={this.state.inputValue === '' && this.state.btnIsClicked ? 'This field cannot be empty!' : ' '}
-
-		          error={this.state.itemIsExist && this.state.btnIsClicked}
-		          helperText={this.state.itemIsExist && this.state.btnIsClicked ? 'This task is already exists!' : ' '}	  
-
-		          // error={this.state.inputValue === '' && this.state.btnIsClicked || this.state.inputValue === 'tt'}
-		          // helperText={this.state.inputValue === '' && this.state.btnIsClicked ? 'This field cannot be empty!' : 
-		          // 			              (this.state.inputValue === 'tt' ? 'This task is already exists!' : ' ')}	       
+		          error={this.state.inputValue === '' && this.state.btnIsClicked || this.state.itemIsExist}
+		          helperText={ this.state.inputValue === '' && this.state.btnIsClicked ? 'This field cannot be empty!' : 
+		          			  (this.state.itemIsExist ? 'This task is already exists!' : ' ') }	       
 	        />
 	        <StyledButton id="btnSave"
 	        			  className={styles.btn} 
